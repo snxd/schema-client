@@ -1,0 +1,3090 @@
+{
+  "$id": "https://snxd.github.io/schema/client/6.2/workflow.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Collection of tasks.",
+  "type": "object",
+  "patternProperties": {
+    ".*": {
+      "$ref": "#/definitions/task"
+    }
+  },
+  "definitions": {
+    "task": {
+      "description": "Task",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "description": "Type of task",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title to show when the task is first started",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status to show when task is first started. First string is start status and second string is success status.",
+          "type": ["string", "array"]
+        },
+        "ignoreError": {
+          "description": "Ignore error conditions for this task.",
+          "type": ["boolean", "array"]
+        },
+        "verbose": {
+          "description": "Print out verbose debug information to log.",
+          "type": "boolean"
+        },
+        "success": {
+          "description": "Task to run when the current tasks finished without an error.",
+          "type": "string"
+        },
+        "failure": {
+          "description": "Task to run when the current task finished with an error.",
+          "type": "string"
+        },
+        "complete": {
+          "description": "Task to run when the current task has finished without being cancelled.",
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "aggregate"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/aggregate"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "analytics"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/analytics"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "certStoreLoad"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/certStoreLoad"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryCopy"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryCopy"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryCreate"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryCreate"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryDelete"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryDelete"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryExists"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryExists"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryIsEmpty"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryIsEmpty"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryIsWritable"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryIsWritable"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryList"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryList"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "directoryMove"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/directoryMove"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "diskSpaceCheck"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/diskSpaceCheck"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "dmgMount"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/dmgMount"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "dmgUnmount"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/dmgUnmount"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "download"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/download"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "environmentGet"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/environmentGet"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "environmentSet"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/environmentSet"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "error"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/error"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "fileAuthenticate"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/fileAuthenticate"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "fileCopy"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/fileCopy"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "fileDelete"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/fileDelete"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "fileExists"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/fileExists"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "fileHash"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/fileHash"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "fileMove"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/fileMove"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "jsonRead"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/jsonRead"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "jsonWrite"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/jsonWrite"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "implode"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/implode"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "iniRead"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/iniRead"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "iniWrite"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/iniWrite"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "interopLoad"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/interopLoad"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "interopUnload"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/interopUnload"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "launch"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/launch"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "log"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/log"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "macro"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/macro"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "msi"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/msi"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "notification"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/notification"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "numberCompare"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/numberCompare"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "pkg"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/pkg"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "plistRead"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/plistRead"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "plistWrite"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/plistWrite"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "processIsOpen"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/processIsOpen"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "processList"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/processList"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "processOpen"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/processOpen"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "processClose"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/processClose"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "progress"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/progress"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "queue"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/queue"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "registryKeyCreate"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/registryKeyCreate"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "registryKeyDelete"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/registryKeyDelete"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "registryKeyExists"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/registryKeyExists"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "registryKeyRead"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/registryKeyRead"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "registryKeyWrite"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/registryKeyWrite"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "repositoryCheck"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/repositoryCheck"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "repositoryErase"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/repositoryErase"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "repositoryFileCheck"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/repositoryFileCheck"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "repositorySync"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/repositorySync"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "restorePoint"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/restorePoint"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "shortcutCreate"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/shortcutCreate"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "shortcutDelete"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/shortcutDelete"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "shutdown"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/shutdown"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "singleton"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/singleton"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "sleep"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/sleep"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "status"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/status"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "stringCompare"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/stringCompare"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "stringContains"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/stringContains"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "unzip"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/unzip"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "urlRedirect"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/urlRedirect"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "urlRedirectMacro"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/urlRedirectMacro"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "versionCompare"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/versionCompare"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "wmi"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/wmi"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "workflowRun"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/workflowRun"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "xmlRead"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/xmlRead"}
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "type": {"const": "xmlWrite"}
+            },
+            "required": ["type"]
+          },
+          "then": {"$ref": "#/definitions/xmlWrite"}
+        }
+      ]
+    },
+    "aggregate": {
+      "description": "Queues a new task constructed from an existing task in the workflow (source) and arguments specified remotely or in the content property (target).",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "aggregate"
+        },
+        "url": {
+          "description": "URL with JSON object to aggregate.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Object or JSON string of object to aggregate. Maximum length as a string is 16384 characters.",
+          "type": ["object", "string"]
+        },
+        "source": {
+          "description": "Used to specify the path to merge from with-in the JSON object specified at the url.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Used to specify the task to merge with if the JSON object specified at the url contains a dictionary of arguments. It is possible to also specify the path inside the task to merge at (e.g. mytask.config).",
+          "type": "string"
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        },
+        "authenticate": {
+          "description": "Authenticates the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "analytics": {
+      "description": "Add additional analytics properties to send for every event.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "analytics"
+        },
+        "global": {
+          "description": "Extend analytics properties app-wide instead of workflow-wide.",
+          "default": false,
+          "type": "boolean"
+        },
+        "key": {
+          "description": "Property name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Property value.",
+          "type": ["string", "integer"]
+        },
+        "keyValuePairs": {
+          "description": "Property key/value pairs.",
+          "type": "object"
+        }
+      }
+    },
+    "certStoreLoad": {
+      "description": "Load a certificate store valid for this workflow only.",
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "certStoreLoad"
+        },
+        "url": {
+          "description": "URL/file of the thumbprint list/jwks file. Should always be an https URL for a secure environment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the certificate store.",
+          "type": "string"
+        }
+      }
+    },
+    "directoryCopy": {
+      "description": "Copies the contents of a directory from one location to another.",
+      "type": "object",
+      "required": ["type", "sourcePath", "targetPath"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryCopy"
+        },
+        "sourcePath": {
+          "description": "Path of directory with contents to copy.",
+          "type": "string"
+        },
+        "targetPath": {
+          "description": "Path to copy contents to.",
+          "type": "string"
+        },
+        "overwrite": {
+          "description": "Overwrite existing files.",
+          "default": true,
+          "type": "boolean"
+        },
+        "recurse": {
+          "description": "Copy recursively.",
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "directoryCreate": {
+      "description": "Creates a directory on the file system.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryCreate"
+        },
+        "path": {
+          "description": "Path of directory to create.",
+          "type": "string"
+        }
+      }
+    },
+    "directoryDelete": {
+      "description": "Delete a directory from the file system recursively. If the specified directory does not exist, the task will succeed.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryDelete"
+        },
+        "path": {
+          "description": "Path of directory to erase.",
+          "type": "string"
+        },
+        "failIfMissing": {
+          "description": "Reports an error when the directory does not exist.",
+          "default": false,
+          "type": "boolean"
+        },
+        "onlyIfEmpty": {
+          "description": "Only delete the directory if it is empty.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "directoryExists": {
+      "description": "Check if a directory exists on the file system.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryExists"
+        },
+        "path": {
+          "description": "Path of directory to check.",
+          "type": "string"
+        },
+        "exists": {
+          "description": "Task to run if the directory exists.",
+          "type": "string"
+        },
+        "missing": {
+          "description": "Task to run if the directory is missing.",
+          "type": "string"
+        }
+      }
+    },
+    "directoryIsEmpty": {
+      "description": "Check if a directory is empty.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryIsEmpty"
+        },
+        "path": {
+          "description": "Path of directory to check.",
+          "type": "string"
+        },
+        "failIfMissing": {
+          "description": "Reports an error when the directory does not exist.",
+          "default": false,
+          "type": "boolean"
+        },
+        "empty": {
+          "description": "Task to run if the directory is empty.",
+          "type": "string"
+        },
+        "notEmpty": {
+          "description": "Task to run if the directory is not empty.",
+          "type": "string"
+        }
+      }
+    },
+    "directoryIsWritable": {
+      "description": "Check if a directory is writable by the current process.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryIsWritable"
+        },
+        "path": {
+          "description": "Path of one or more directories to check.",
+          "type": ["array", "string"]
+        },
+        "recurse": {
+          "description": "If directory does not exist, find the nearest parent directory that exists and verifies it has write permissions on it.",
+          "default": false,
+          "type": "boolean"
+        },
+        "writable": {
+          "description": "Task to run if the directory is writable.",
+          "type": "string"
+        },
+        "notWritable": {
+          "description": "Task to run if the directory is not writable.",
+          "type": "string"
+        }
+      }
+    },
+    "directoryList": {
+      "description": "Enumerates a directory.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryList"
+        },
+        "path": {
+          "description": "Search path and wildcard pattern. To search all files in a directory, the path should end with a slash.",
+          "type": "string"
+        },
+        "skipHidden": {
+          "description": "Skip hidden files and directories.",
+          "default": true,
+          "type": "boolean"
+        },
+        "skipReadOnly": {
+          "description": "Skip read only files and directories.",
+          "default": false,
+          "type": "boolean"
+        },
+        "forEachFile": {
+          "description": "Task to run when a file is found.",
+          "type": "string"
+        },
+        "forEachDirectory": {
+          "description": "Task to run when a directory is found.",
+          "type": "string"
+        }
+      }
+    },
+    "directoryMove": {
+      "description": "Moves the contents of a directory from one location to another.",
+      "type": "object",
+      "required": ["type", "sourcePath", "targetPath"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "directoryMove"
+        },
+        "sourcePath": {
+          "description": "Path of directory with contents to move.",
+          "type": "string"
+        },
+        "targetPath": {
+          "description": "Path to move contents to.",
+          "type": "string"
+        }
+      }
+    },
+    "diskSpaceCheck": {
+      "description": "Checks the disk space on a certain path.",
+      "type": "object",
+      "required": ["type", "requiredBytes"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "diskSpaceCheck"
+        },
+        "requiredBytes": {
+          "description": "Numbner of bytes required to successfully complete the task.",
+          "type": "number",
+          "minimum": 1
+        },
+        "path": {
+          "description": "Path of the file system to check for free space.",
+          "type": "string"
+        },
+        "enough": {
+          "description": "Task to run when there is enough space on the disk.",
+          "type": "string"
+        },
+        "notEnough": {
+          "description": "Task to run when there is not enough space on the disk.",
+          "type": "string"
+        }
+      }
+    },
+    "dmgMount": {
+      "description": "Mounts an apple disk image.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "dmgMount"
+        },
+        "path": {
+          "description": "Path to the .dmg file to mount.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Name to mount to in /Volumes/.",
+          "default": "{sha1:path}",
+          "type": "string"
+        }
+      }
+    },
+    "dmgUnmount": {
+      "description": "Unmounts an apple disk image.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "dmgUnmount"
+        },
+        "path": {
+          "description": "Path to the .dmg file to unmount.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Name mounted to in /Volumes/.",
+          "default": "{sha1:path}",
+          "type": "string"
+        }
+      }
+    },
+    "download": {
+      "description": "Downloads a file to disk. Alternatively loads a JSON object into the current task's status dictionary.",
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "download"
+        },
+        "url": {
+          "description": "URL to download.",
+          "type": "string"
+        },
+        "outputPath": {
+          "description": "Path of the file on disk to save to. If the path is a directory, it will output to that directory using the filename from the URL. If no filename is specified in the URL and the path is a directory, an error will be returned from the task.",
+          "type": "string"
+        },
+        "headers": {
+          "description": "Additional request headers to send.",
+          "type": "object"
+        },
+        "cookies": {
+          "description": "Cookies to send with the request.",
+          "type": "object"
+        },
+        "timeout": {
+          "description": "Number of seconds to wait for a socket read before timing out. This is not a socket connect timeout.",
+          "default": 15,
+          "type": "number"
+        },
+        "maxRetries": {
+          "description": "Number of times to retry after the first error. After a failed attempt, there is a delay before the next attempt. The delay doubles each attempt until it reaches the max delay of 3840 seconds (15, 30, 60, 120, 240, 480, 960, 1920, 3840).",
+          "default": 3,
+          "type": "number"
+        },
+        "allowProxy": {
+          "description": "Allow connections through a proxy.",
+          "default": true,
+          "type": "boolean"
+        },
+        "allowResume": {
+          "description": "Allow the output file to resume downloading, otherwise always overwrite the output file.",
+          "default": false,
+          "type": "boolean"
+        },
+        "allowGzip": {
+          "description": "Allow the content to be returned from the server gzip compressed.",
+          "default": true,
+          "type": "boolean"
+        },
+        "allowHeadRequest": {
+          "description": "Use a HEAD request to determine the size of the content prior to downloading, otherwise use a GET request.",
+          "default": true,
+          "type": "boolean"
+        },
+        "skipTimestamp": {
+          "description": "Skip syncing the timestamp from the server to the files downloaded on disk. The file on disk will have the modified date of the time they were created, otherwise it will have the modified date as specified by the remote server.",
+          "default": false,
+          "type": "boolean"
+        },
+        "overwriteIfNewer": {
+          "description": "Overwrite the local file with the remote file if the remote file is newer than the local file. Requires allowResume to be true and skipTimestamp to be false.",
+          "default": false,
+          "type": "boolean"
+        },
+        "overwriteIfOlder": {
+          "description": "Overwrite the local file with the remote file if the remote file is older than the local file. Requires allowResume to be true and skipTimestamp to be false.",
+          "default": false,
+          "type": "boolean"
+        },
+        "limitBodySize": {
+          "description": "Specifies the maximum number of bytes that can be downloaded in the response body.",
+          "type": "number"
+        }
+      }
+    },
+    "environmentGet": {
+      "description": "Gets an environment variable for the current process.",
+      "type": "object",
+      "required": ["type", "key"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "environmentGet"
+        },
+        "key": {
+          "description": "Name of the environment variable to get.",
+          "type": "string"
+        }
+      }
+    },
+    "environmentSet": {
+      "description": "Sets an environment variable for the current process.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "environmentSet"
+        },
+        "key": {
+          "description": "Name of the environment variable to set.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to set. Maximum length is 4096.",
+          "type": "string"
+        },
+        "keyValuePairs": {
+          "description": "Block of key/value pairs to set.",
+          "type": "object"
+        }
+      }
+    },
+    "error": {
+      "description": "Sets an error for the current task chain. Alternatively sets the exit code without shutting down.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "error"
+        },
+        "exitCode": {
+          "description": "Exit code to return from the program.",
+          "type": "integer"
+        },
+        "message": {
+          "description": "Error message to assign to task.",
+          "type": "string"
+        },
+        "break": {
+          "description": "Break into system debugger.",
+          "type": "boolean"
+        }
+      }
+    },
+    "fileAuthenticate": {
+      "description": "Authenticates the signature of a file on disk.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "fileAuthenticate"
+        },
+        "path": {
+          "description": "Path of file to authenticate. To pass authentication, must be a valid code-signed PE formatted binary on Windows, a valid code-signed MachO binary or pkg installer on macOS, or must be a ELF binary on Linux which has no code-signing.",
+          "type": "string"
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        },
+        "valid": {
+          "description": "Task to run when file passes authentication.",
+          "type": "string"
+        },
+        "notValid": {
+          "description": "Task to run when file does not pass authentication.",
+          "type": "string"
+        }
+      }
+    },
+    "fileCopy": {
+      "description": "Copies files from one location to another on disk.",
+      "type": "object",
+      "required": ["type", "sourcePath", "targetPath"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "fileCopy"
+        },
+        "sourcePath": {
+          "description": "Source file to copy.",
+          "type": "string"
+        },
+        "targetPath": {
+          "description": "Target file to copy to.",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "If explicitly set, it will ensure the target file has the read-only flag set or not. If not explicitly set, it will copy the read-only flag of the source file.",
+          "type": "boolean"
+        }
+      }
+    },
+    "fileDelete": {
+      "description": "Deletes a file from the file system. If the specified file does not exists, the task will succeed.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "fileDelete"
+        },
+        "path": {
+          "description": "Path of file to be erased.",
+          "type": "string"
+        },
+        "waitForReboot": {
+          "description": "Wait for reboot to erase. Requires elevation.",
+          "default": false,
+          "type": "boolean"
+        },
+        "failIfMissing": {
+          "description": "Reports an error when the file does not exist.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "fileExists": {
+      "description": "Check if a file exists on the file system.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "fileExists"
+        },
+        "path": {
+          "description": "Path of file to check.",
+          "type": "string"
+        },
+        "exists": {
+          "description": "Task to run if the file exists.",
+          "type": "string"
+        },
+        "missing": {
+          "description": "Task to run if the file is missing.",
+          "type": "string"
+        }
+      }
+    },
+    "fileHash": {
+      "description": "Gets or compares the hash of a file on disk.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "fileHash"
+        },
+        "path": {
+          "description": "Path of file to hash.",
+          "type": "string"
+        },
+        "algorithm": {
+          "description": "Name of the hash interface.",
+          "enum": [
+            "crc",
+            "md2",
+            "md4",
+            "md5",
+            "sha1",
+            "sha224",
+            "sha256",
+            "sha384",
+            "sha512"
+          ],
+          "default": "sha1",
+          "type": "string"
+        },
+        "expectedDigest": {
+          "description": "Expected hash digest.",
+          "type": "string"
+        },
+        "equalTo": {
+          "description": "Task to run if the actual hash equals the expected hash.",
+          "type": "string"
+        },
+        "notEqualTo": {
+          "description": "Task to run if the actual has does not equal the expected hash.",
+          "type": "string"
+        }
+      }
+    },
+    "fileMove": {
+      "description": "Moves a file from one location on disk to another.",
+      "type": "object",
+      "required": ["type", "sourcePath", "targetPath"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "fileMove"
+        },
+        "sourcePath": {
+          "description": "Source file to move.",
+          "type": "string"
+        },
+        "targetPath": {
+          "description": "Target file to move to.",
+          "type": "string"
+        },
+        "failIfNotDeleted": {
+          "description": "Causes task to fail if the source is not deleted.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "implode": {
+      "description": "Deletes the executable for the current process after exiting.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "implode"
+        }
+      }
+    },
+    "iniRead": {
+      "description": "Reads a value from an ini file.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "iniRead"
+        },
+        "path": {
+          "description": "Path of the ini file to read.",
+          "type": "string"
+        },
+        "section": {
+          "description": "Section to read from.",
+          "default": "global",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to read.",
+          "type": "string"
+        },
+        "keys": {
+          "description": "Keys to read.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "read": {
+          "description": "Task to run when all keys were read successfully.",
+          "type": "string"
+        },
+        "notRead": {
+          "description": "Task to run when one or more keys were not read.",
+          "type": "string"
+        }
+      }
+    },
+    "iniWrite": {
+      "description": "Writes a value to an ini file.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "iniWrite"
+        },
+        "path": {
+          "description": "Path of the ini file to write to.",
+          "type": "string"
+        },
+        "section": {
+          "description": "Section to write in.",
+          "default": "global",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to write.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to write.",
+          "type": ["string", "integer"]
+        },
+        "keyValuePairs": {
+          "description": "Block of key/value pairs to write.",
+          "type": "object"
+        }
+      }
+    },
+    "interopLoad": {
+      "description": "Loads an interop library.",
+      "type": "object",
+      "required": ["type", "name", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "interopLoad"
+        },
+        "name": {
+          "description": "Friendly name for the interop library.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path to the interop library to be loaded.",
+          "type": "string"
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        }
+      }
+    },
+    "interopUnload": {
+      "description": "Unloads an interop library.",
+      "type": "object",
+      "required": ["type", "name", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "interopUnload"
+        },
+        "name": {
+          "description": "Friendly name for the interop library.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path to the interop library to be unloaded.",
+          "type": "string"
+        }
+      }
+    },
+    "jsonRead": {
+      "description": "Reads values from an json file.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "jsonRead"
+        },
+        "path": {
+          "description": "Path to the json file.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL to the json file.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Object or JSON string.",
+          "type": ["object", "string"]
+        },
+        "key": {
+          "description": "Key to read.",
+          "type": "string"
+        },
+        "keys": {
+          "description": "Keys to read.",
+          "type": ["array"],
+          "items": {
+            "type": "string"
+          }
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        },
+        "authenticate": {
+          "description": "Authenticate the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver. ",
+          "default": true,
+          "type": "boolean"
+        },
+        "read": {
+          "description": "Task to run when all keys were successfully read.",
+          "type": "string"
+        },
+        "notRead": {
+          "description": "Task to run when one or more keys were not read.",
+          "type": "string"
+        }
+      }
+    },
+    "jsonWrite": {
+      "description": "Adds or edits values in a json file.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "jsonWrite"
+        },
+        "path": {
+          "description": "Path to the json file to write to.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to write.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to write.",
+          "type": "string"
+        },
+        "keyValuePairs": {
+          "description": "Block of key/value pairs to write.",
+          "type": "object"
+        }
+      }
+    },
+    "launch": {
+      "description": "Launch an application.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "launch"
+        },
+        "path": {
+          "description": "Path to application to run.",
+          "type": "string"
+        },
+        "workingDirectory": {
+          "description": "Working directory for application.",
+          "type": "string"
+        },
+        "arguments": {
+          "description": "Arguments for the application. If the value is an array of strings, they are encapsulated by double quotes and combined.",
+          "type": ["string", "array"]
+        },
+        "elevationRights": {
+          "description": "Required process elevation rights. (user, elevated, asinvoker)",
+          "default": "user",
+          "type": "string"
+        },
+        "waitForExit": {
+          "description": "Wait for the application to exit before completing.",
+          "default": false,
+          "type": "boolean"
+        },
+        "verbose": {
+          "description": "Print out verbose debug information to log.",
+          "default": false,
+          "type": "boolean"
+        },
+        "successCode": {
+          "description": "Return code indicating success.",
+          "default": 0,
+          "type": ["integer", "array"]
+        },
+        "warningMap": {
+          "description": "Key/value pairs to match for a warning condition. The key is an exit code and the value is the error string.",
+          "type": "object"
+        },
+        "warningFlagsMap": {
+          "description": "Key/value pairs to match for a warning condition. The key is an exit code flag and the value is the error string.",
+          "type": "object"
+        },
+        "errorMap": {
+          "description": "Key/value pairs to match for an error condition. The key is an exit code and the value is the error string.",
+          "type": "object"
+        },
+        "errorFlagsMap": {
+          "description": "Key/value pairs to match for an error condition. The key is an exit code flag and the value is the error string.",
+          "type": "object"
+        },
+        "successOutput": {
+          "description": "List of any strings to search for in stdout, for successful completion. (macOS only)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "errorOutputMap": {
+          "description": "Key/value pairs to match for an error condition (macOS only). The key is a string to search for in stdout, and the value is the error string.",
+          "type": "object"
+        },
+        "showWindow": {
+          "description": "Show window for the target application. (Windows only)",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "log": {
+      "description": "Logs a message to the debug log.",
+      "type": "object",
+      "required": ["type", "message"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "log"
+        },
+        "message": {
+          "description": "Text to log.",
+          "type": ["string", "array"]
+        }
+      }
+    },
+    "macro": {
+      "description": "Load macros from a JSON URL or javascript object.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "macro"
+        },
+        "url": {
+          "description": "URL to JSON object to load.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Macro name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Macro value.",
+          "type": "string"
+        },
+        "keyValuePairs": {
+          "description": "Macro key/value pairs.",
+          "type": "object"
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        },
+        "authenticate": {
+          "description": "Authenticates the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver.",
+          "default": false,
+          "type": "boolean"
+        },
+        "global": {
+          "description": "App-wide macro scope, otherwise the scope is local to the current workflow.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "msi": {
+      "description": "Runs an MSI installer.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "msi"
+        },
+        "path": {
+          "description": "Path to the .msi installer file.",
+          "type": "string"
+        },
+        "silent": {
+          "description": "Silent install.",
+          "default": true,
+          "type": "boolean"
+        },
+        "properties": {
+          "description": "Custom key/value pair properties for the installer. Your specific MSI installer must support these. Values cannot contain spaces.",
+          "type": "object"
+        },
+        "reportStatus": {
+          "description": "Shows MSI status for the task.",
+          "default": true,
+          "type": "boolean"
+        },
+        "reportProgress": {
+          "description": "Shows MSI progress for the task.",
+          "default": true,
+          "type": "boolean"
+        },
+        "logFilename": {
+          "description": "Filename to where the .msi should save a log to.",
+          "type": "string"
+        }
+      }
+    },
+    "notification": {
+      "description": "Sends a NotificationCenter event. This task is useful for one-way communication between the workflow engine and the javascript or interop. For two-way communication consider a javascript or interop workflow task.",
+      "type": "object",
+      "required": ["type", "event"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "notification"
+        },
+        "event": {
+          "description": "Notification event following the format: Type.Notification.",
+          "type": "string"
+        },
+        "delay": {
+          "description": "Number of milliseconds to delay the event from being fired.",
+          "type": "number"
+        },
+        "content": {
+          "description": "Object or string containing information to send in event.",
+          "type": ["object", "string"]
+        }
+      }
+    },
+    "numberCompare": {
+      "description": "Compares two numbers.",
+      "type": "object",
+      "required": ["type", "numberOne", "numberTwo"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "numberCompare"
+        },
+        "numberOne": {
+          "description": "First number in comparison.",
+          "type": ["number", "string"]
+        },
+        "numberTwo": {
+          "description": "Second number in comparison.",
+          "type": ["number", "string"]
+        },
+        "equalTo": {
+          "description": "Task to run when numbers match.",
+          "type": "string"
+        },
+        "notEqualTo": {
+          "description": "Task to run when numbers do not match.",
+          "type": "string"
+        },
+        "greaterThan": {
+          "description": "Task to run when first number is greater than number version.",
+          "type": "string"
+        },
+        "lessThan": {
+          "description": "Task to run when first number is less than number version.",
+          "type": "string"
+        }
+      }
+    },
+    "pkg": {
+      "description": "Runs a PKG installer. This task inherits the arguments of the launch task.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "pkg"
+        },
+        "path": {
+          "description": "Path to the .pkg installer file.",
+          "type": "string"
+        },
+        "arguments": {
+          "description": "Arguments for the installer. If the value is an array of strings, they are encapsulated by double quotes and combined.",
+          "type": ["string", "array"]
+        },
+        "logFilename": {
+          "description": "Filename to where the .pkg should save a log to.",
+          "type": "string"
+        },
+        "logOnlyErrors": {
+          "description": "Only log the errors to the log file.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "plistRead": {
+      "description": "Reads values from a property list file.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "plistRead"
+        },
+        "path": {
+          "description": "Path to the plist file to read from.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to read.",
+          "type": "string"
+        },
+        "keys": {
+          "description": "Keys to read.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "read": {
+          "description": "Task to run when all keys were read successfully.",
+          "type": "string"
+        },
+        "notRead": {
+          "description": "Task to run when one or more keys were not read.",
+          "type": "string"
+        }
+      }
+    },
+    "plistWrite": {
+      "description": "Adds or edits values in a property list file.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "plistWrite"
+        },
+        "path": {
+          "description": "Path to the plist file to write to.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to write.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to write.",
+          "type": ["string", "integer"]
+        },
+        "keyValuePairs": {
+          "description": "Block of key/value pairs to write.",
+          "type": "object"
+        }
+      }
+    },
+    "processClose": {
+      "description": "Closes a program based on its process id. Terminates after attempting to close a program gracefully.",
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "processClose"
+        },
+        "id": {
+          "description": "ID of the process to close.",
+          "type": ["integer", "string"]
+        },
+        "exitCode": {
+          "description": "Exit code to terminate the process with. (Windows only)",
+          "type": "integer"
+        },
+        "closed": {
+          "description": "Task to run when program is closed.",
+          "type": "string"
+        },
+        "notClosed": {
+          "description": "Task to run when program is not closed.",
+          "type": "string"
+        },
+        "waitForClose": {
+          "description": "Number of seconds to wait before terminating a program after attempt to close a program gracefully if greater than zero. exitCode is not set if program was not gracefully closed.",
+          "type": ["integer", "string"]
+        }
+      }
+    },
+    "processIsOpen": {
+      "description": "Checks to see if a program is running.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "processIsOpen"
+        },
+        "path": {
+          "description": "Full path or filename of the executable.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Process id.",
+          "type": ["integer", "string"]
+        },
+        "running": {
+          "description": "Task to run when the program is running.",
+          "type": "string"
+        },
+        "notRunning": {
+          "description": "Task to run when the program is not running.",
+          "type": "string"
+        }
+      }
+    },
+    "processList": {
+      "description": "Enumerates processes.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "processList"
+        },
+        "parentId": {
+          "description": "Only return children of a particular process ID.",
+          "type": ["integer", "string"]
+        },
+        "path": {
+          "description": "Only return processes matching a particular directory or filename. Supports wildcards.",
+          "type": "string"
+        },
+        "forEach": {
+          "description": "Task to run when a process is found.",
+          "type": "string"
+        }
+      }
+    },
+    "processOpen": {
+      "description": "Opens an executable, a file, or a url using the default editor.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "processOpen"
+        },
+        "path": {
+          "description": "Path to the file/URL/executable to open.",
+          "type": "string"
+        }
+      }
+    },
+    "progress": {
+      "description": "Unified progress for multiple tasks.",
+      "type": "object",
+      "required": ["type", "actions"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "progress"
+        },
+        "actions": {
+          "description": "List of tasks that make up the progress bar. Each task in the list is further evaluated by checking their argument list for ;actions', 'complete', and other entries in taskChainParameter.",
+          "type": ["array", "string"]
+        },
+        "maxPercentage": {
+          "description": "Maximum range of the progress bar.",
+          "default": 100,
+          "type": "number"
+        },
+        "maxChainDepth": {
+          "description": "Maximum depth to keep searching for tasks to include in the progress bar.",
+          "default": 1000,
+          "type": "integer"
+        },
+        "taskChainParameter": {
+          "description": "List of the key names of arguments in your sub-tasks that contain the names of other tasks being linked to.",
+          "default": "complete",
+          "type": ["array", "string"]
+        },
+        "verbose": {
+          "description": "Prints verbose debug information in the log.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "queue": {
+      "description": "Queue of workflow tasks to run.",
+      "type": "object",
+      "required": ["type", "actions"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "queue"
+        },
+        "actions": {
+          "description": "List of task names to be executed.",
+          "type": "array"
+        }
+      }
+    },
+    "registryKeyCreate": {
+      "description": "Create a registry key.",
+      "type": "object",
+      "required": ["type", "hive", "location"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "registryKeyCreate"
+        },
+        "hive": {
+          "description": "Registry hive.",
+          "enum": ["user", "machine", "root", "config", "desktopuser"],
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of registry key.",
+          "type": "string"
+        },
+        "view": {
+          "description": "Registry view.",
+          "enum": ["default", "32", "64"],
+          "type": "string"
+        }
+      }
+    },
+    "registryKeyDelete": {
+      "description": "Delete a registry key.",
+      "type": "object",
+      "required": ["type", "hive", "location"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "registryKeyDelete"
+        },
+        "hive": {
+          "description": "Registry hive.",
+          "enum": ["user", "machine", "root", "config", "desktopuser"],
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of registry key.",
+          "type": "string"
+        },
+        "view": {
+          "description": "Registry view. If an array of strings, the first registry view with the key found will be deleted.",
+          "enum": ["default", "64", "32"],
+          "type": ["string", "array"]
+        },
+        "failIfMissing": {
+          "description": "Reports an error when the key does not exist.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "registryKeyExists": {
+      "description": "Check if a registry key exists.",
+      "type": "object",
+      "required": ["type", "hive", "location"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "registryKeyExists"
+        },
+        "hive": {
+          "description": "Registry hive.",
+          "enum": ["user", "machine", "root", "config", "desktopuser"],
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of registry key.",
+          "type": "string"
+        },
+        "view": {
+          "description": "Registry view. If an array of strings, the first registry view with the key found will indicate success.",
+          "enum": ["default", "32", "64"],
+          "type": ["string", "array"]
+        },
+        "exists": {
+          "description": "Task to run if the registry key exists.",
+          "type": "string"
+        },
+        "missing": {
+          "description": "Task to run if the registry key does not exist.",
+          "type": "string"
+        }
+      }
+    },
+    "registryKeyRead": {
+      "description": "Reads registry keys.",
+      "type": "object",
+      "required": ["type", "hive", "location"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "registryKeyRead"
+        },
+        "hive": {
+          "description": "Registry hive.",
+          "enum": ["user", "machine", "root", "config", "desktopuser"],
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of registry key.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to read.",
+          "type": "string"
+        },
+        "keys": {
+          "description": "Keys to read.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "view": {
+          "description": "Registry view. If an array of strings, the first registry view with the key found will indicate success.",
+          "enum": ["default", "32", "64"],
+          "type": ["string", "array"]
+        },
+        "security": {
+          "description": "Security group to add to the key (default, everybody).",
+          "type": "string"
+        },
+        "read": {
+          "description": "Task to run when all keys were read successfully.",
+          "type": "string"
+        },
+        "notRead": {
+          "description": "Task to run when one or more keys were not read.",
+          "type": "string"
+        }
+      }
+    },
+    "registryKeyWrite": {
+      "description": "Adds or edits registry keys.",
+      "type": "object",
+      "required": ["type", "hive", "location"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "registryKeyWrite"
+        },
+        "hive": {
+          "description": "Registry hive.",
+          "enum": ["user", "machine", "root", "config", "desktopuser"],
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of registry key.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to write.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to write.",
+          "type": "string"
+        },
+        "keyValuePairs": {
+          "description": "Block of key/value pairs to write.",
+          "type": "object"
+        },
+        "view": {
+          "description": "Registry view. If an array of strings, the first registry view with the key found will indicate success.",
+          "enum": ["default", "32", "64"],
+          "type": ["string", "array"]
+        },
+        "security": {
+          "description": "Security group to add to the key.",
+          "enum": ["default", "everybody"],
+          "type": "string"
+        },
+        "onlyIfExists": {
+          "description": "Only writes the registry value if it already exists (update-only).",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "repositoryConfig": {
+      "description": "Repository configuration.",
+      "type": "object",
+      "properties": {
+        "alias": {
+          "description": "URL to the alias file.",
+          "default": "alias.url",
+          "type": "string"
+        },
+        "autoMask": {
+          "description": "Automatically determine mask from source and target metafiles when mask is not available from catalog.",
+          "default": true,
+          "type": "boolean"
+        },
+        "catalog": {
+          "description": "URL to the catalog file.",
+          "default": "catalog.url",
+          "type": "string"
+        },
+        "cleanup": {
+          "description": "Remove files no longer needed to sync (removed files, backup files, etc).",
+          "default": true,
+          "type": "boolean"
+        },
+        "deltaCacheSize": {
+          "description": "Cached read buffer (in bytes) used during delta operations. Stops delta operations from having to re-read recently read bytes.",
+          "default": "storage.cacheSize",
+          "type": "integer"
+        },
+        "local": {
+          "description": "Final asset destination.",
+          "allOf": [{"$ref": "#/definitions/repositoryStorage"}]
+        },
+        "fileCompletes": {
+          "description": "Maximum number of concurrent file completes.",
+          "type": "integer"
+        },
+        "inplace": {
+          "description": "Move assets from the pending directory to the final asset destination.",
+          "default": true,
+          "type": "boolean"
+        },
+        "mask": {
+          "description": "Base64 encoded bitfield used to mask the pieces in a sync.",
+          "type": "string"
+        },
+        "metafile": {
+          "description": "Local path used to save the metafile.",
+          "type": "string"
+        },
+        "metafileSave": {
+          "description": "Save metafile when sync is finished.",
+          "default": true,
+          "type": "boolean"
+        },
+        "pending": {
+          "description": "Storage container for pending pieces.",
+          "allOf": [{"$ref": "#/definitions/repositoryStorage"}]
+        },
+        "phases": {
+          "description": "Configure progress status/weighting based on phases.",
+          "allOf": [{"$ref": "#/definitions/repositoryPhases"}]
+        },
+        "stageMask": {
+          "description": "Name of predefined mask in metafile.",
+          "type": "string"
+        },
+        "stallTime": {
+          "description": "Number of seconds to wait for successful activity before displaying an error.",
+          "default": "60 for repositorySync, 30 for repositoryCheck",
+          "type": "integer"
+        },
+        "stallTimeout": {
+          "description": "Number of seconds to wait for successful activity before failing the task.",
+          "default": "No timeout, will retry continually until complete.",
+          "type": "integer"
+        },
+        "requests": {
+          "description": "Maximum number of concurrent storage requests.",
+          "default": "storage.requests",
+          "type": "integer"
+        },
+        "repository": {
+          "description": "Name of the repository.",
+          "type": "string"
+        },
+        "remote": {
+          "description": "Remote location of repository - merged from the catalog request.",
+          "allOf": [{"$ref": "#/definitions/repositoryStorage"}]
+        }
+      }
+    },
+    "repositoryCheck": {
+      "description": "Checks to see if an existing repository needs to be updated.",
+      "type": "object",
+      "required": ["type", "metafile"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "repositoryCheck"
+        },
+        "check": {
+          "description": "Dry run - only check if update needs to occur.",
+          "type": "boolean"
+        },
+        "install": {
+          "description": "Task to run if an install is required.",
+          "type": "string"
+        },
+        "update": {
+          "description": "Task to run if an update is required.",
+          "type": "string"
+        },
+        "upToDate": {
+          "description": "Task to run if an install or update is not required.",
+          "type": "string"
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        }
+      },
+      "allOf": [{"$ref": "#/definitions/repositoryConfig"}]
+    },
+    "repositoryErase": {
+      "description": "Erase an existing repository.",
+      "type": "object",
+      "required": ["type", "metafile"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "repositoryErase"
+        }
+      },
+      "allOf": [{"$ref": "#/definitions/repositoryConfig"}]
+    },
+    "repositoryFileCheck": {
+      "description": "Checks to see if an existing repository needs to be repaired by examining the existance, size, and modified timestamp of the files on disk.",
+      "type": "object",
+      "required": ["type", "metafile", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "sleep"
+        },
+        "metafile": {
+          "description": "Path to the repository metafile.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path to the local files on disk.",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Compare modified time stamps.",
+          "default": true,
+          "type": "boolean"
+        },
+        "authenticate": {
+          "description": "Authenticates the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver.",
+          "default": true,
+          "type": "boolean"
+        },
+        "valid": {
+          "description": "Task to run if all files on disk match.",
+          "type": "string"
+        },
+        "notValid": {
+          "description": "Task to run if files on disk do not match.",
+          "type": "string"
+        }
+      }
+    },
+    "repositoryPhase": {
+      "description": "Phase container.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Status used by workflow when phase begins.",
+          "type": "string"
+        },
+        "weight": {
+          "description": "Weighted progress. All the phases configured are totaled and the percentage of this number is used to calculate the current progress.",
+          "type": "number"
+        }
+      }
+    },
+    "repositoryPhases": {
+      "description": "Phases container.",
+      "type": "object",
+      "properties": {
+        "apply": {
+          "description": "Configure the apply phase. This phase is used to apply deltas after the initial expansion.",
+          "allOf": [{"$ref": "#/definitions/repositoryPhase"}]
+        },
+        "clean": {
+          "description": "Configure the clean phase. This phase is used to remove files were deleted between releases.",
+          "allOf": [{"$ref": "#/definitions/repositoryPhase"}]
+        },
+        "copy": {
+          "description": "Configure the copy/download phase. This phase is used to transfer data onto the local machine.",
+          "allOf": [{"$ref": "#/definitions/repositoryPhase"}]
+        }
+      }
+    },
+    "repositoryStorage": {
+      "description": "Storage container.",
+      "type": "object",
+      "properties": {
+        "deltaFormat": {
+          "description": "File name format for solidpiece delta files (uses string expander with added variables).",
+          "default": "{sourceInfoHash}/{targetDigest}.soliddelta",
+          "type": "string"
+        },
+        "flags": {
+          "description": "Repository attributes.",
+          "type": ["integer", "string"]
+        },
+        "type": {
+          "description": "Type of storage container.",
+          "enum": ["file", "filePiece", "http", "httpPiece"],
+          "type": "string"
+        },
+        "id": {
+          "description": "Remote release id to use for the repository. When specified the alias URL will not be used to resolve the release id.",
+          "type": "string"
+        },
+        "ignore": {
+          "description": "Path to a JSON file containing an array of names to ignore deletion when updating.",
+          "type": "string"
+        },
+        "partialExtension": {
+          "description": "Extension added when file is not completed..",
+          "default": "storage.partialExtension",
+          "type": "string"
+        },
+        "path": {
+          "description": "File path where repository is stored.",
+          "type": "string"
+        },
+        "pieceFormat": {
+          "description": "File name format for solidpiece files (uses string expander with added variables).",
+          "default": "{targetInfoHash}/{targetDigest}.solidpiece",
+          "type": "string"
+        },
+        "selfUpdate": {
+          "description": "Flag a file system to allow self update.",
+          "default": "storage.selfUpdate",
+          "type": "boolean"
+        },
+        "skipAttributes": {
+          "description": "Skip file attribute updating when available.",
+          "default": "storage.skipAttributes",
+          "type": "boolean"
+        },
+        "skipTimestamps": {
+          "description": "Skip setting file timestamp information when available.",
+          "default": "storage.skipTimestamp",
+          "type": "boolean"
+        },
+        "systemBuffer": {
+          "description": "Use the global system disk cache.",
+          "default": "storage.systemBuffer",
+          "type": "boolean"
+        },
+        "url": {
+          "description": "Url where the repository is stored.",
+          "type": "string"
+        }
+      }
+    },
+    "repositorySync": {
+      "description": "Updates an existing repository.",
+      "type": "object",
+      "required": ["type", "metafile"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "repositorySync"
+        },
+        "allowPartial": {
+          "description": "Allows cancelling before sync is complete.",
+          "default": true,
+          "type": "boolean"
+        },
+        "repair": {
+          "description": "Repair the repository.",
+          "type": "boolean"
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        },
+        "additionalProperties": true
+      },
+      "allOf": [{"$ref": "#/definitions/repositoryConfig"}]
+    },
+    "restorePoint": {
+      "description": "Sets a restore point.",
+      "type": "object",
+      "required": ["type", "name", "actions"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "restorePoint"
+        },
+        "name": {
+          "description": "Name of the restore point, usually the name of the app being installed.",
+          "type": "string"
+        },
+        "actions": {
+          "description": "List of task names to be executed.",
+          "type": ["string", "array"]
+        },
+        "operation": {
+          "description": "The operation occuring that requires a restore point (install or uninstall).",
+          "default": "install",
+          "type": "string"
+        },
+        "nested": {
+          "description": "Use nested restore point.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "shortcutCreate": {
+      "description": "Creates a shortcut.",
+      "type": "object",
+      "required": ["type", "name", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "shortcutCreate"
+        },
+        "name": {
+          "description": "Display name of the shortcut.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path to the application that the shortcut will run.",
+          "type": "string"
+        },
+        "arguments": {
+          "description": "Arguments for the application. If the value is an array of strings, they are encapsulated by double quotes and combined.",
+          "type": ["string", "array"]
+        },
+        "location": {
+          "description": "Directory to create the shortcut in.",
+          "default": "{userDesktop}",
+          "type": "string"
+        },
+        "iconLocation": {
+          "description": "Path to the application/library that contains the icon (Windows only). If no icon location is specified, the path to the application will be used.",
+          "type": "string"
+        },
+        "iconIndex": {
+          "description": "Index of the icon within the icon location. If no icon index is specified, the first icon in the application executable is used.",
+          "type": "integer"
+        },
+        "runAsAdmin": {
+          "description": "Runs the application as an administrator. (Windows only)",
+          "type": "boolean"
+        }
+      }
+    },
+    "shortcutDelete": {
+      "description": "Deletes a shortcut.",
+      "type": "object",
+      "required": ["type", "name"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "shortcutDelete"
+        },
+        "name": {
+          "description": "Display name of the shortcut.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Directory the shortcut is located in.",
+          "type": "string",
+          "default": "{userDesktop}"
+        }
+      }
+    },
+    "shutdown": {
+      "description": "Stops further tasks from being run.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "shutdown"
+        },
+        "exitCode": {
+          "description": "Exit code to return from the program.",
+          "type": "integer"
+        },
+        "force": {
+          "description": "Will not wait for tasks to finish before attempting to shutdown; any running tasks will be cancelled. Any tasks that are pending to be run will not be run except for the unload task and its children.",
+          "default": false,
+          "type": "boolean"
+        },
+        "removeLocalStorage": {
+          "description": "Removes the local storage directory when the application closes.",
+          "default": false,
+          "type": "boolean"
+        },
+        "restartElevated": {
+          "description": "Restarts the application with elevated privileges.",
+          "default": false,
+          "type": "boolean"
+        },
+        "restart": {
+          "description": "Restarts the application.",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "singleton": {
+      "description": "Prevents launching concurrent tasks across multiple workflows.",
+      "type": "object",
+      "required": ["type", "name"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "singleton"
+        },
+        "name": {
+          "description": "Name of singleton.",
+          "type": "string"
+        },
+        "exists": {
+          "description": "Task to run when singleton exists.",
+          "type": "string"
+        },
+        "missing": {
+          "description": "Task to run when singleton does not exist.",
+          "type": "string"
+        }
+      }
+    },
+    "sleep": {
+      "description": "Waits for a specified amount of time.",
+      "type": "object",
+      "required": ["type", "seconds"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "sleep"
+        },
+        "seconds": {
+          "description": "Number of seconds to wait.",
+          "type": ["number", "string"]
+        }
+      }
+    },
+    "status": {
+      "description": "Updates the status for a specific object in the workflow.",
+      "type": "object",
+      "required": ["type", "target"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "status"
+        },
+        "target": {
+          "description": "Workflow or task to target for the status update.",
+          "type": "string"
+        },
+        "additionalProperties": true
+      }
+    },
+    "stringCompare": {
+      "description": "Compare two strings.",
+      "type": "object",
+      "required": ["type", "stringOne", "stringTwo"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "stringCompare"
+        },
+        "stringOne": {
+          "description": "First string in comparison.",
+          "type": "string"
+        },
+        "stringTwo": {
+          "description": "Second string in comparison.",
+          "type": "string"
+        },
+        "ignoreCase": {
+          "description": "Ignore case when comparing strings.",
+          "type": "boolean",
+          "default": false
+        },
+        "equalTo": {
+          "description": "Task to run when strings match.",
+          "type": "string"
+        },
+        "notEqualTo": {
+          "description": "Task to run when strings do not match, case regardless.",
+          "type": "string"
+        },
+        "greaterThan": {
+          "description": "Task to run when first string is greater than second string.",
+          "type": "string"
+        },
+        "lessThan": {
+          "description": "Task to run when first string is less than second string.",
+          "type": "string"
+        }
+      }
+    },
+    "stringContains": {
+      "description": "Check if one string contains another.",
+      "type": "object",
+      "required": ["type", "stringOne", "stringTwo"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "stringContains"
+        },
+        "stringOne": {
+          "description": "String to search through.",
+          "type": "string"
+        },
+        "stringTwo": {
+          "description": "String to find.",
+          "type": "string"
+        },
+        "ignoreCase": {
+          "description": "Ignore case when comparing strings.",
+          "type": "boolean",
+          "default": false
+        },
+        "found": {
+          "description": "Task to run when string is found.",
+          "type": "string"
+        },
+        "notFound": {
+          "description": "Task to run when string is not found.",
+          "type": "string"
+        }
+      }
+    },
+    "unzip": {
+      "description": "Extracts a zip archive to disk.",
+      "type": "object",
+      "required": ["type", "path", "pathInZip", "outputDirectory"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "unzip"
+        },
+        "path": {
+          "description": "Path to the zip file.",
+          "type": "string"
+        },
+        "pathInZip": {
+          "description": "Name of the entry in the zip file to extract. Supports wildcards.",
+          "default": "*",
+          "type": "string"
+        },
+        "outputDirectory": {
+          "description": "Path to the directory to extract the zip file to.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Password to use when extracting the zip file.",
+          "type": "string"
+        }
+      }
+    },
+    "urlRedirect": {
+      "description": "Redirects one URL to another.",
+      "type": "object",
+      "required": ["type", "beginsWith"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "urlRedirect"
+        },
+        "beginsWith": {
+          "description": "Checks if the URL begins with this string before redirecting.",
+          "type": ["string", "array"]
+        },
+        "append": {
+          "description": "Appends value to the existing URL.",
+          "type": "string"
+        },
+        "replace": {
+          "description": "Replaces the existing URL.",
+          "type": "string"
+        }
+      }
+    },
+    "urlRedirectMacro": {
+      "description": "Adds a custom macro to the URL redirection subsystem to be used by the urlRedirect task.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "urlRedirectMacro"
+        },
+        "key": {
+          "description": "Macro name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Macro value.",
+          "type": ["string", "integer"]
+        },
+        "keyValuePairs": {
+          "description": "Macro key/value pairs.",
+          "type": "object"
+        }
+      }
+    },
+    "versionCompare": {
+      "description": "Compares two version numbers. A version number contains up to 4 numbers separated by periods or commas representing major, minor, release and build numbers. A version number string an optionally begin with the letter v.",
+      "type": "object",
+      "required": ["type", "versionOne", "versionTwo"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "versionCompare"
+        },
+        "versionOne": {
+          "description": "First version in comparison.",
+          "type": "string"
+        },
+        "versionTwo": {
+          "description": "Second version in comparison.",
+          "type": "string"
+        },
+        "equalTo": {
+          "description": "Task to run when versions match.",
+          "type": "string"
+        },
+        "notEqualTo": {
+          "description": "Task to run when versions do not match.",
+          "type": "string"
+        },
+        "greaterThan": {
+          "description": "Task to run when first version is greater than second version.",
+          "type": "string"
+        },
+        "lessThan": {
+          "description": "Task to run when first version is less than second version.",
+          "type": "string"
+        }
+      }
+    },
+    "wmi": {
+      "description": "Queries the Windows Management Instrumentation service.",
+      "type": "object",
+      "required": ["type", "query"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "wmi"
+        },
+        "query": {
+          "description": "WQL query.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Name of the property to retrieve.",
+          "type": "string"
+        },
+        "keys": {
+          "description": "Names of the properties to retrieve.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "server": {
+          "description": "Name of the server.",
+          "default": "root\\cimv2",
+          "type": "string"
+        },
+        "matched": {
+          "description": "Task to run if matches were found for the requested query.",
+          "type": "string"
+        },
+        "notMatched": {
+          "description": "Task to run if no matches were found for the requested query.",
+          "type": "string"
+        }
+      }
+    },
+    "workflowRun": {
+      "description": "Runs a separate workflow.",
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "workflowRun"
+        },
+        "url": {
+          "description": "URL/file of the workflow to run.",
+          "type": "string"
+        },
+        "elevated": {
+          "description": "Run with elevated permissions. If the workflow does not need to be elevated, it will be run in the current process. If the workflow does need to be elevated and the current process is not elevated, it will spawn a new elevated instance and run the workflow in that process.",
+          "default": false,
+          "type": "boolean"
+        },
+        "start": {
+          "description": "Task to run after load task has completed.",
+          "default": "start",
+          "type": "string"
+        },
+        "store": {
+          "description": "Certificate store used to authenticate.",
+          "default": "app",
+          "type": ["string", "array"]
+        },
+        "load": {
+          "description": "Task to run after loading the workflow.",
+          "default": "load",
+          "type": "string"
+        },
+        "unload": {
+          "description": "Task to run before unloading the workflow.",
+          "default": "unload",
+          "type": "string"
+        },
+        "arguments": {
+          "description": "Arguments to send to the workflow, if it needs to be elevated. If the value is an array of strings, they are encapsulated by double quotes and combined.",
+          "type": ["string", "array"]
+        },
+        "authenticate": {
+          "description": "Authenticates the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver.",
+          "default": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "xmlRead": {
+      "description": "Reads values from an xml file.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "xmlRead"
+        },
+        "path": {
+          "description": "Path to the xml file to read from.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL to the xml file to read from.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to read.",
+          "type": "string"
+        },
+        "keys": {
+          "description": "Keys to read.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "read": {
+          "description": "Task to run when all keys were read successfully.",
+          "type": "string"
+        },
+        "notRead": {
+          "description": "Task to run when one or more keys were not read.",
+          "type": "string"
+        }
+      }
+    },
+    "xmlWrite": {
+      "description": "Adds or edits values in a xml file.",
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "xmlWrite"
+        },
+        "path": {
+          "description": "Path to the xml file to write to.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key to write.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to write.",
+          "type": ["string", "integer"]
+        },
+        "keyValuePairs": {
+          "description": "Block of key/value pairs to write.",
+          "type": "object"
+        }
+      }
+    }
+  }
+}
