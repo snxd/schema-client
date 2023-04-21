@@ -1,5 +1,5 @@
 {
-  "$id": "https://snxd.github.io/schema/client/6.2/workflow.json",
+  "$id": "https://snxd.github.io/schema/client/7.1.29/workflow.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Collection of tasks.",
   "type": "object",
@@ -24,11 +24,17 @@
         },
         "status": {
           "description": "Status to show when task is first started. First string is start status and second string is success status.",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "ignoreError": {
           "description": "Ignore error conditions for this task.",
-          "type": ["boolean", "array"]
+          "type": ["boolean", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "verbose": {
           "description": "Print out verbose debug information to log.",
@@ -798,7 +804,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "authenticate": {
           "description": "Authenticates the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver.",
@@ -985,7 +994,10 @@
         },
         "path": {
           "description": "Path of one or more directories to check.",
-          "type": ["array", "string"]
+          "type": ["array", "string"],
+          "items": {
+            "type": "string"
+          }
         },
         "recurse": {
           "description": "If directory does not exist, find the nearest parent directory that exists and verifies it has write permissions on it.",
@@ -1275,7 +1287,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "valid": {
           "description": "Task to run when file passes authentication.",
@@ -1504,6 +1519,11 @@
         "keyValuePairs": {
           "description": "Block of key/value pairs to write.",
           "type": "object"
+        },
+        "unicode": {
+          "description": "Use UTF-16 (LE) encoding for a newly created file. By default, it will use UTF-8 encoding for a newly created file. If a file exists, an existing file encoding will be used.",
+          "default": false,
+          "type": "boolean"
         }
       }
     },
@@ -1527,7 +1547,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -1585,7 +1608,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "authenticate": {
           "description": "Authenticate the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver. ",
@@ -1648,7 +1674,10 @@
         },
         "arguments": {
           "description": "Arguments for the application. If the value is an array of strings, they are encapsulated by double quotes and combined.",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "elevationRights": {
           "description": "Required process elevation rights. (user, elevated, asinvoker)",
@@ -1668,7 +1697,10 @@
         "successCode": {
           "description": "Return code indicating success.",
           "default": 0,
-          "type": ["integer", "array"]
+          "type": ["integer", "array"],
+          "items": {
+            "type": "integer"
+          }
         },
         "warningMap": {
           "description": "Key/value pairs to match for a warning condition. The key is an exit code and the value is the error string.",
@@ -1715,7 +1747,10 @@
         },
         "message": {
           "description": "Text to log.",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -1747,7 +1782,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "authenticate": {
           "description": "Authenticates the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver.",
@@ -1872,7 +1910,10 @@
         },
         "arguments": {
           "description": "Arguments for the installer. If the value is an array of strings, they are encapsulated by double quotes and combined.",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "logFilename": {
           "description": "Filename to where the .pkg should save a log to.",
@@ -2053,7 +2094,10 @@
         },
         "actions": {
           "description": "List of tasks that make up the progress bar. Each task in the list is further evaluated by checking their argument list for ;actions', 'complete', and other entries in taskChainParameter.",
-          "type": ["array", "string"]
+          "type": ["array", "string"],
+          "items": {
+            "type": "string"
+          }
         },
         "maxPercentage": {
           "description": "Maximum range of the progress bar.",
@@ -2068,7 +2112,10 @@
         "taskChainParameter": {
           "description": "List of the key names of arguments in your sub-tasks that contain the names of other tasks being linked to.",
           "default": "complete",
-          "type": ["array", "string"]
+          "type": ["array", "string"],
+          "items": {
+            "type": "string"
+          }
         },
         "verbose": {
           "description": "Prints verbose debug information in the log.",
@@ -2088,7 +2135,10 @@
         },
         "actions": {
           "description": "List of task names to be executed.",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -2138,7 +2188,11 @@
         "view": {
           "description": "Registry view. If an array of strings, the first registry view with the key found will be deleted.",
           "enum": ["default", "64", "32"],
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "enum": ["default", "32", "64"],
+            "type": "string"
+          }
         },
         "failIfMissing": {
           "description": "Reports an error when the key does not exist.",
@@ -2168,7 +2222,11 @@
         "view": {
           "description": "Registry view. If an array of strings, the first registry view with the key found will indicate success.",
           "enum": ["default", "32", "64"],
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "enum": ["default", "32", "64"],
+            "type": "string"
+          }
         },
         "exists": {
           "description": "Task to run if the registry key exists.",
@@ -2212,7 +2270,11 @@
         "view": {
           "description": "Registry view. If an array of strings, the first registry view with the key found will indicate success.",
           "enum": ["default", "32", "64"],
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "enum": ["default", "32", "64"],
+            "type": "string"
+          }
         },
         "security": {
           "description": "Security group to add to the key (default, everybody).",
@@ -2261,7 +2323,11 @@
         "view": {
           "description": "Registry view. If an array of strings, the first registry view with the key found will indicate success.",
           "enum": ["default", "32", "64"],
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "enum": ["default", "32", "64"],
+            "type": "string"
+          }
         },
         "security": {
           "description": "Security group to add to the key.",
@@ -2395,7 +2461,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         }
       },
       "allOf": [{"$ref": "#/definitions/repositoryConfig"}]
@@ -2568,7 +2637,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "additionalProperties": true
       },
@@ -2589,7 +2661,10 @@
         },
         "actions": {
           "description": "List of task names to be executed.",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "operation": {
           "description": "The operation occuring that requires a restore point (install or uninstall).",
@@ -2622,7 +2697,10 @@
         },
         "arguments": {
           "description": "Arguments for the application. If the value is an array of strings, they are encapsulated by double quotes and combined.",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "location": {
           "description": "Directory to create the shortcut in.",
@@ -2998,7 +3076,10 @@
         "store": {
           "description": "Certificate store used to authenticate.",
           "default": "app",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "load": {
           "description": "Task to run after loading the workflow.",
@@ -3012,7 +3093,10 @@
         },
         "arguments": {
           "description": "Arguments to send to the workflow, if it needs to be elevated. If the value is an array of strings, they are encapsulated by double quotes and combined.",
-          "type": ["string", "array"]
+          "type": ["string", "array"],
+          "items": {
+            "type": "string"
+          }
         },
         "authenticate": {
           "description": "Authenticates the signature in the JSON content. By default, it will authenticate the JSON on an HTTP connection and will not authenticate the JSON on a HTTPS connection because it is already secure. It will not try to authenticate a connection to the local {contentUrl} webserver.",

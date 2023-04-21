@@ -1,5 +1,5 @@
 {
-  "$id": "https://snxd.github.io/schema/client/6.2/window.json",
+  "$id": "https://snxd.github.io/schema/client/7.1.29/window.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Window configuration.",
   "type": "object",
@@ -25,14 +25,19 @@
       "description": "macOS options.",
       "$ref": "#/definitions/mac"
     },
-    "minWidth": {
-      "description": "Minimum window width which gets automatically adjusted for DPI.",
-      "default": 600,
-      "type": "integer"
-    },
     "minHeight": {
       "description": "Minimum window height which gets automatically adjusted for DPI.",
       "default": 400,
+      "type": "integer"
+    },
+    "minimizeToNotificationArea": {
+      "description": "Minimize application to notification area.",
+      "default": false,
+      "type": "boolean"
+    },
+    "minWidth": {
+      "description": "Minimum window width which gets automatically adjusted for DPI.",
+      "default": 600,
       "type": "integer"
     },
     "popupFrame": {
@@ -53,15 +58,36 @@
       "description": "Url to the main html page.",
       "type": "string"
     },
+    "useNotificationArea": {
+      "description": "Display icon in notification area.",
+      "default": false,
+      "type": "boolean"
+    },
     "windowFrame": {
       "description": "Type of window to create.",
-      "enum": ["Borderless", "Popup", "Resizable", "Normal"],
       "default": "Normal",
-      "type": "string"
-    },
-    "windows": {
-      "description": "Windows options.",
-      "$ref": "#/definitions/windows"
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["Borderless", "Popup", "Resizable", "Normal"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "style": {
+              "description": "Window style.",
+              "enum": ["Borderless", "Popup", "Normal"],
+              "default": "Normal",
+              "type": "string"
+            },
+            "resizable": {
+              "description": "Window resizable.",
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        }
+      ]
     }
   },
   "definitions": {
@@ -184,21 +210,6 @@
         },
         "webGl": {
           "description": "Enable WebGL extensions.",
-          "default": false,
-          "type": "boolean"
-        }
-      }
-    },
-    "windows": {
-      "type": "object",
-      "properties": {
-        "minimizeToNotificationArea": {
-          "description": "Minimize application to notification area.",
-          "default": false,
-          "type": "boolean"
-        },
-        "useNotificationArea": {
-          "description": "Display icon in notification area.",
           "default": false,
           "type": "boolean"
         }

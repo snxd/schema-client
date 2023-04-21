@@ -1,5 +1,5 @@
 {
-  "$id": "https://snxd.github.io/schema/client/6.2/app.json",
+  "$id": "https://snxd.github.io/schema/client/7.1.29/app.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Application configuration.",
   "type": "object",
@@ -44,7 +44,10 @@
     },
     "hostnameWhitelist": {
       "description": "List of hostname allowed to connect to during HTTP requests.",
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "keyStores": {
       "description": "Pre-defined base64-encoded keys to use for authentication.",
@@ -235,11 +238,19 @@
         },
         "externalUrls": {
           "description": "List of urls (without protocol) to open in the user's default system browser. Supports wildcards.",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "cachePath": {
           "description": "Location where cache data will be stored on disk. If empty then browsers will be created in incognito mode where in-memory caches are used for storage and no data is persisted to disk.",
           "type": "string"
+        },
+        "modelessPopups": {
+          "description": "Opens popups as modeless windows above the main window.",
+          "default": true,
+          "type": "boolean"
         },
         "nativeFallback": {
           "description": "Loads the native web browser if CEF fails to load.",
@@ -251,6 +262,13 @@
           "default": false,
           "type": "boolean"
         },
+        "responseHeaders": {
+          "description": "Modify HTTP response headers prior delivering them to the WEB rendering engine.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/responseHeader"
+          }
+        },
         "persistSessionCookies": {
           "description": "Persists cookies across multiple sessions. Must be used in conjunction with cachePath.",
           "default": false,
@@ -259,10 +277,6 @@
         "userAgent": {
           "description": "User agent string used for CEF browser requests only.",
           "type": "string"
-        },
-        "version": {
-          "description": "Version of CEF library to load.",
-          "type": "integer"
         }
       }
     },
@@ -322,13 +336,55 @@
       "properties": {
         "readOnly": {
           "description": "Valid registry paths for reading.",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "readWrite": {
           "description": "Valid registry paths for reading and writing.",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
+    },
+    "responseHeader": {
+      "description": "HTTP header rules for the source URL.",
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "Source wildcard URL whose response HTTP headers should be modified.",
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/responseHeaderRule"
+          }
+        }
+      },
+      "required": ["url", "rules"]
+    },
+    "responseHeaderRule": {
+      "description": "PCRE2 regex rule for HTTP response header.",
+      "type": "object",
+      "properties": {
+        "header": {
+          "description": "HTTP header name.",
+          "type": "string"
+        },
+        "pattern": {
+          "description": "PCRE2 regex for matching a HTTP header value.",
+          "type": "string"
+        },
+        "replacement": {
+          "description": "Replacement for a matched HTTP header value.",
+          "type": "string"
+        }
+      },
+      "required": ["header", "pattern", "replacement"]
     },
     "storage": {
       "type": "object",
@@ -484,11 +540,17 @@
         "listenPort": {
           "description": "Port for the internal web server to listen on. This value can be an integer or an array of integers. If the value is an array of integers the web server will attempt to bind on the first port available on the user's machine. If port 0 is specified, it will bind on a random port specified by the operating system.",
           "default": 0,
-          "type": ["integer", "array"]
+          "type": ["integer", "array"],
+          "items": {
+            "type": "integer"
+          }
         },
         "externalPaths": {
           "description": "List of wildcard paths to allow external browser processes to access. The root path / is rejected.",
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "oauth": {
           "description": "Contains the settings for the receiver of OAuth authorization code.",
