@@ -22,7 +22,7 @@
       "default": false,
       "type": "boolean"
     },
-    "catalog" : {
+    "catalog": {
       "description": "Global repository catalog options.",
       "$ref": "#/definitions/catalog"
     },
@@ -358,6 +358,13 @@
           "description": "Source wildcard URL whose response HTTP headers should be modified.",
           "type": "string"
         },
+        "urls": {
+          "description": "List of source wildcard URLs whose response HTTP headers should be modified.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "rules": {
           "type": "array",
           "items": {
@@ -365,7 +372,14 @@
           }
         }
       },
-      "required": ["url", "rules"]
+      "oneOf": [
+        {
+          "required": ["url", "rules"]
+        },
+        {
+          "required": ["urls", "rules"]
+        }
+      ]
     },
     "responseHeaderRule": {
       "description": "PCRE2 regex rule for HTTP response header.",
@@ -384,7 +398,11 @@
           "type": "string"
         }
       },
-      "required": ["header", "pattern", "replacement"]
+      "required": [
+        "header",
+        "pattern",
+        "replacement"
+      ]
     },
     "storage": {
       "type": "object",
@@ -464,7 +482,9 @@
         },
         "flags": {
           "description": "Flags used to separate resource redirection from normal url redirection.",
-          "enum": ["resource"],
+          "enum": [
+            "resource"
+          ],
           "type": "string"
         },
         "compileOptions": {
@@ -486,13 +506,21 @@
         },
         "versionMin": {
           "description": "Minimum version of TLS specification.",
-          "enum": ["1.0", "1.1", "1.2"],
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2"
+          ],
           "default": "1.0",
           "type": "string"
         },
         "versionMax": {
           "description": "Maximum version of TLS specification.",
-          "enum": ["1.0", "1.1", "1.2"],
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2"
+          ],
           "default": "1.2",
           "type": "string"
         }
@@ -540,7 +568,10 @@
         "listenPort": {
           "description": "Port for the internal web server to listen on. This value can be an integer or an array of integers. If the value is an array of integers the web server will attempt to bind on the first port available on the user's machine. If port 0 is specified, it will bind on a random port specified by the operating system.",
           "default": 0,
-          "type": ["integer", "array"],
+          "type": [
+            "integer",
+            "array"
+          ],
           "items": {
             "type": "integer"
           }
