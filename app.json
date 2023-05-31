@@ -449,6 +449,11 @@
           "description": "Additional macros that can be included in urls.",
           "type": "object"
         },
+        "timeout": {
+          "description": "Default timeout for web requests.",
+          "default": 15,
+          "type": "integer"
+        },
         "redirect": {
           "description": "URL redirection entries.",
           "patternProperties": {
