@@ -2356,9 +2356,9 @@
           "type": "boolean"
         },
         "catalog": {
-          "description": "URL to the catalog file.",
+          "description": "URL to the catalog file or false to explicitly disable the catalog.",
           "default": "catalog.url",
-          "type": "string"
+          "type": ["boolean", "null", "string"]
         },
         "cleanup": {
           "description": "Remove files no longer needed to sync (removed files, backup files, etc).",
