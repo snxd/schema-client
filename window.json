@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/snxd/schema-client/7.2.57/window.json",
+  "$id": "https://raw.githubusercontent.com/snxd/schema-client/7.2.58/window.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Window configuration.",
   "type": "object",
