@@ -220,6 +220,17 @@
     "cef": {
       "type": "object",
       "properties": {
+        "cachePath": {
+          "description": "Location where cache data will be stored on disk. If empty then browsers will be created in incognito mode where in-memory caches are used for storage and no data is persisted to disk.",
+          "type": "string"
+        },
+        "crossOriginWhitelist": {
+          "description": "List of hostnames to add to CEF cross origin whitelist.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "enabled": {
           "description": "Loads CEF if it exists in the same directory as the host.",
           "default": false,
@@ -236,10 +247,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "cachePath": {
-          "description": "Location where cache data will be stored on disk. If empty then browsers will be created in incognito mode where in-memory caches are used for storage and no data is persisted to disk.",
-          "type": "string"
         },
         "modelessPopups": {
           "description": "Opens popups as modeless windows above the main window.",
