@@ -220,6 +220,11 @@
         "url": {
           "description": "URL to the catalog file.",
           "type": "string"
+        },
+        "webGetCacheMinAge": {
+          "description": "Minimum http cache age (seconds) (0 to disable cache).",
+          "default": 60,
+          "type": "integer"
         }
       }
     },
