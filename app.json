@@ -42,13 +42,6 @@
       "description": "Edge WebView2 options.",
       "$ref": "#/definitions/edge"
     },
-    "hostnameWhitelist": {
-      "description": "List of hostname allowed to connect to during HTTP requests.",
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
     "keyStores": {
       "description": "Pre-defined base64-encoded keys to use for authentication.",
       "type": "object"
