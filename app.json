@@ -151,6 +151,11 @@
           "description": "Minimum http cache age (seconds) (0 to disable cache).",
           "default": 60,
           "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
+          "default": 33554432,
+          "type": "integer"
         }
       }
     },
@@ -227,6 +232,11 @@
         "webGetCacheMinAge": {
           "description": "Minimum http cache age (seconds) (0 to disable cache).",
           "default": 60,
+          "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
+          "default": 33554432,
           "type": "integer"
         }
       }
@@ -339,6 +349,16 @@
       "properties": {
         "limitSize": {
           "description": "Maximum size of a metafile to load.",
+          "default": 33554432,
+          "type": "integer"
+        },
+        "webGetCacheMinAge": {
+          "description": "Minimum http cache age (seconds) (0 to disable cache).",
+          "default": 10,
+          "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
           "default": 33554432,
           "type": "integer"
         }
@@ -606,6 +626,11 @@
         "webGetCacheMinAge": {
           "description": "Minimum http cache age (seconds).",
           "default": 10,
+          "type": "integer"
+        },
+        "webGetCacheMaxSize": {
+          "description": "Maximum http cache size.",
+          "default": 33554432,
           "type": "integer"
         }
       }
