@@ -297,6 +297,11 @@
     "ie": {
       "type": "object",
       "properties": {
+        "debug": {
+          "description": "Show critical error and security alert dialog boxes.",
+          "default": false,
+          "type": "boolean"
+        },
         "enabled": {
           "description": "Whether or not to allow Trident support, or only allow Edge WebView2.",
           "default": true,
