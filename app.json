@@ -83,10 +83,6 @@
       "description": "Name of the application.",
       "type": "string"
     },
-    "registryWhitelist": {
-      "description": "List of ReadOnly/ReadWrite items allowed for registry access.",
-      "$ref": "#/definitions/registryWhitelist"
-    },
     "requiresElevated": {
       "description": "Application requires an elevated account to run.",
       "default": false,
@@ -328,25 +324,6 @@
         "errorUrl": {
           "description": "URL of the content that is displayed in the user's browser if there is no authorization code in the OAuth server response.",
           "type": "string"
-        }
-      }
-    },
-    "registryWhitelist": {
-      "type": "object",
-      "properties": {
-        "readOnly": {
-          "description": "Valid registry paths for reading.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "readWrite": {
-          "description": "Valid registry paths for reading and writing.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },
