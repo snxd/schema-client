@@ -297,6 +297,11 @@
     "ie": {
       "type": "object",
       "properties": {
+        "enabled": {
+          "description": "Whether or not to allow Trident support, or only allow Edge WebView2.",
+          "default": true,
+          "type": "boolean"
+        },
         "minVersion": {
           "description": "Minimum major version of IE to support.",
           "default": 9,
