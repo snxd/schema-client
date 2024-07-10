@@ -593,8 +593,8 @@
       "type": "object",
       "properties": {
         "webGetCacheMinAge": {
-          "description": "Minimum http cache age (seconds) (0 to disable cache).",
-          "default": 60,
+          "description": "Minimum http cache age (seconds).",
+          "default": 10,
           "type": "integer"
         }
       }
