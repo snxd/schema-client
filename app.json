@@ -183,6 +183,20 @@
           "default": "https://axis.snxd.com/track/",
           "type": "string"
         },
+        "excludeEvents": {
+          "description": "List of event name wildcard strings to exclude when sending events.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "includeEvents": {
+          "description": "List of event name wildcard strings to include when sending events. By default, all events are included. Included list is processed before excluded list.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "key": {
           "description": "Analytics key.",
           "type": "string"
