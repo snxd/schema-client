@@ -272,6 +272,11 @@
     "edge": {
       "type": "object",
       "properties": {
+        "enabled": {
+          "description": "Use Edge WebView2 instead of IE if it is available on the system.",
+          "default": true,
+          "type": "boolean"
+        },
         "cachePath": {
           "description": "Location where cache data will be stored on disk. If empty then browsers will be created in incognito mode where in-memory caches are used for storage and no data is persisted to disk.",
           "type": "string"
