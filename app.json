@@ -17,11 +17,6 @@
       "description": "Analytics options.",
       "$ref": "#/definitions/analytics"
     },
-    "cacheSkin": {
-      "description": "Cache skin in memory.",
-      "default": false,
-      "type": "boolean"
-    },
     "catalog": {
       "description": "Global repository catalog options.",
       "$ref": "#/definitions/catalog"
