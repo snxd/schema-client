@@ -4,6 +4,27 @@
   "description": "Window configuration.",
   "type": "object",
   "properties": {
+    "aspectRatio": {
+      "description": "Aspect ratio to maintain when resizing the window.",
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "width": {
+              "description": "Width for aspect ratio calculation.",
+              "type": "integer"
+            },
+            "height": {
+              "description": "Height for aspect ratio calculation.",
+              "type": "integer"
+            }
+          }
+        }
+      ]
+    },
     "awk": {
       "description": "Apple WebKit options.",
       "$ref": "#/definitions/awk"
