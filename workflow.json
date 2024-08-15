@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/snxd/schema-client/7.2.74/workflow.json",
+  "$id": "https://raw.githubusercontent.com/snxd/schema-client/7.2.75/workflow.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Collection of tasks.",
   "type": "object",
