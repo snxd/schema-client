@@ -46,6 +46,14 @@
       "description": "macOS options.",
       "$ref": "#/definitions/mac"
     },
+    "maxHeight": {
+      "description": "Maximum window height which gets automatically adjusted for DPI.",
+      "type": "integer"
+    },
+    "maxWidth": {
+      "description": "Maximum window width which gets automatically adjusted for DPI.",
+      "type": "integer"
+    },
     "minHeight": {
       "description": "Minimum window height which gets automatically adjusted for DPI.",
       "default": 400,
