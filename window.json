@@ -123,16 +123,11 @@
     "awk": {
       "type": "object",
       "properties": {
-        "developerTools": {
-          "description": "Enable developer tools.",
-          "default": false,
-          "type": "boolean"
-        },
         "java": {
           "description": "Allow java to run.",
           "default": false,
           "type": "boolean"
-        },
+        }
       }
     },
     "cef": {
@@ -140,11 +135,6 @@
       "properties": {
         "databases": {
           "description": "Enable  databases.",
-          "default": false,
-          "type": "boolean"
-        },
-        "developerTools": {
-          "description": "Enable developer tools.",
           "default": false,
           "type": "boolean"
         },
@@ -199,11 +189,6 @@
       "properties": {
         "databases": {
           "description": "Enable databases.",
-          "default": false,
-          "type": "boolean"
-        },
-        "developerTools": {
-          "description": "Enable developer tools.",
           "default": false,
           "type": "boolean"
         },
