@@ -133,11 +133,6 @@
           "default": false,
           "type": "boolean"
         },
-        "plugins": {
-          "description": "Allow user plugins.",
-          "default": false,
-          "type": "boolean"
-        }
       }
     },
     "cef": {
@@ -165,11 +160,6 @@
         },
         "pageCache": {
           "description": "Enable page cache.",
-          "default": false,
-          "type": "boolean"
-        },
-        "plugins": {
-          "description": "Allow user plugins.",
           "default": false,
           "type": "boolean"
         },
