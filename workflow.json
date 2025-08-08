@@ -2905,7 +2905,7 @@
     "unzip": {
       "description": "Extracts a zip archive to disk.",
       "type": "object",
-      "required": ["type", "path", "pathInZip", "outputDirectory"],
+      "required": ["type", "path", "outputDirectory"],
       "properties": {
         "type": {
           "type": "string",
