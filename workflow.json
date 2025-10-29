@@ -1689,6 +1689,16 @@
           "default": false,
           "type": "boolean"
         },
+        "waitForVisible": {
+          "description": "Wait for the application UI to appear before completing. Ignored if any of waitForExit or captureOutput is set to true.",
+          "default": false,
+          "type": "boolean"
+        },
+        "waitForVisibleTimeout": {
+          "description": "Number of seconds to wait for the application UI before completing. The task completes successfully if the timeout expires.",
+          "default": 10,
+          "type": "number"
+        },
         "verbose": {
           "description": "Print out verbose debug information to log.",
           "default": false,
